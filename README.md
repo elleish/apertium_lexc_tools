@@ -28,7 +28,8 @@ Once this python package is installed, you can use it to analyze .lexc files for
 2. import this python package: `import sakha_language_tools.lexc_parser`
 3. load the .lecx file into python: `tree = load_lexc("apertium-sah.sah.lexc")` 
 4. Examine the parts of speech in the language: `tree['Root']`
-5. Count the lemmas in a specific part of speech: `len(tree['Verbs'])`, `len(tree['Nouns'])`, 
-6. Visualize a tree from any node: tree('Nouns')
-7. Visualize a tree from any node with a specified depth: tree('Nouns', depth=4) 
-8. Additional examples can be found in the `examples.ipynb` file.
+5. Count the lemmas in a specific part of speech: `len(tree['Verbs'])`, `len(tree['Nouns'])`, etc.
+6. List of tree nodes `tree.keys()`  
+7. Visualize a tree from any node: `tree('N1')`
+8. Visualize a tree from any node with a specified depth: `tree('Nouns', depth_restrict=4)` 
+9. Additional examples can be found in the `examples.ipynb` file.
