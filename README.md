@@ -10,8 +10,7 @@ The .lexc File Parser is a tool designed to analyze files in the .lexc format us
 
 To install the .lexc File Parser, you can clone the GitHub repository using the following command:
 
-```bash
 git clone https://github.com/elleish/sakha_language_tools
-'''
+
 ### Usage
-Once the parser is installed, you can use it to analyze .lexc files for the Apertium project. Simply refer to the documentation or the tool's command-line interface for instructions on how to use its various features.
+Once the parser is installed, you can use it to analyze .lexc files for the Apertium project. 
