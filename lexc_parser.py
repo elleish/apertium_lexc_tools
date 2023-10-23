@@ -2,20 +2,22 @@ def clear(x):
     return x.split(';')[0].split('!')[0].split('#')[0].strip()
 
 def load_lexc(x):
-  f = open(x, "r")
-  lexc = f.read()
-  lexc_lines = lexc.split('\n')
-  tree = dict()
-  header, block = '__empty', []
-  for line in lexc_lines:
-      if line.startswith("LEXICON Root") or line.startswith("Multichar_Symbols") or line.startswith("LEXICON"):
-          line = line.split("LEXICON ")[-1]
-          tree[header] = block.copy()
-          block = []
-          header = clear(line)
-      else:
-          if line != '' and not line.startswith('!'):
-              block.append(clear(line))
+    f = open(x, "r")
+    lexc = f.read()
+    lexc_lines = lexc.split('\n')
+    tree = dict()
+    header, block = '__empty', []
+    for line in lexc_lines:
+        if line.startswith("LEXICON Root") or line.startswith("Multichar_Symbols") or line.startswith("LEXICON"):
+            line = line.split("LEXICON ")[-1]
+            tree[header] = block.copy()
+            block = []
+            header = clear(line)
+        else:
+            if line != '' and not line.startswith('!'):
+                block.append(clear(line))
+    return tree
+    
 def it_is_node(x):
     x = str(x)
     if len(x) > 0:
@@ -24,18 +26,18 @@ def it_is_node(x):
         return False
 
 def triple(x):
-   tempa, tempb, tempc = "", "", ""
-   if ';' in x:
-      x = x.split(';', 1)[0]
-   if ':' in x:
-      tempa, x = x.split(':', 1)
-   if ' ' in x:
-      tempb, tempc = x.split(' ', 1)
-   else:
-      tempc = x
-   if not '<' in tempa.strip():
-       tempa = ''
-   return tempa.strip(), tempb.strip(), tempc.strip()
+    tempa, tempb, tempc = "", "", ""
+    if ';' in x:
+        x = x.split(';', 1)[0]
+    if ':' in x:
+        tempa, x = x.split(':', 1)
+    if ' ' in x:
+        tempb, tempc = x.split(' ', 1)
+    else:
+        tempc = x
+    if not '<' in tempa.strip():
+        tempa = ''
+    return tempa.strip(), tempb.strip(), tempc.strip()
 
 def go(x, depth_restrict=16, morph='', surface='', depth=1):
     if depth > depth_restrict:
