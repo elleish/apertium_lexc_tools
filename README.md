@@ -28,4 +28,4 @@ Once the parser is installed, you can use it to analyze .lexc files for the Aper
 - Check parts of speech in the language `tree() `</li>
 - Count lemmas in part of speech `count('Nouns')`</li>
 - Visulizing a tree from any node `tree('Nouns')`</li>
--Visulizing a tree from any node with prescribed depth `tree('Nouns', depth=4)`</li>  
+- Visulizing a tree from any node with prescribed depth `tree('Nouns', depth=4)`</li>  
