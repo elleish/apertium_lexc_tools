@@ -16,16 +16,19 @@ git clone https://github.com/elleish/sakha_language_tools
 
 ### Usage
 
-Once the parser is installed, you can use it to analyze .lexc files for the Apertium project.
+Once this python package is installed, you can use it to analyze .lexc files for the Apertium project.
 
-- get the lexc file `!wget https://raw.githubusercontent.com/apertium/apertium-sah/master/apertium-sah.sah.lexc`</li>
+1. get the lexc file `!wget https://raw.githubusercontent.com/apertium/apertium-sah/master/apertium-sah.sah.lexc`
 
-  - kazakh language `!wget https://raw.githubusercontent.com/apertium/apertium-kaz/master/apertium-kaz.kaz.lexc`</li>
-  - tatar language `!wget https://raw.githubusercontent.com/apertium/apertium-tat/master/apertium-tat.tat.lexc`</li>
-  - kyrgyz language `!wget https://raw.githubusercontent.com/apertium/apertium-kir/master/apertium-kir.kir.lexc`</li>
-  - tuvan language `!wget https://raw.githubusercontent.com/apertium/apertium-tyv/master/apertium-tyv.tyv.lexc`</li>
+  - kazakh language `!wget https://raw.githubusercontent.com/apertium/apertium-kaz/master/apertium-kaz.kaz.lexc`
+  - tatar language `!wget https://raw.githubusercontent.com/apertium/apertium-tat/master/apertium-tat.tat.lexc`
+  - kyrgyz language `!wget https://raw.githubusercontent.com/apertium/apertium-kir/master/apertium-kir.kir.lexc`
+  - tuvan language `!wget https://raw.githubusercontent.com/apertium/apertium-tyv/master/apertium-tyv.tyv.lexc`
 
-- Check parts of speech in the language `tree() `</li>
-- Count lemmas in part of speech `count('Nouns')`</li>
-- Visulizing a tree from any node `tree('Nouns')`</li>
-- Visulizing a tree from any node with prescribed depth `tree('Nouns', depth=4)`</li>  
+2. import the python package: `import lexc_parser`
+3. tree = load_lexc("apertium-sah.sah.lexc") 
+4. Examine the parts of speech in the language: tree()
+5. Count the lemmas in a specific part of speech: count('Nouns')
+6. Visualize a tree from any node: tree('Nouns')
+7. Visualize a tree from any node with a specified depth: tree('Nouns', depth=4) 
+8. Additional examples can be found in the `examples.ipynb` file.
