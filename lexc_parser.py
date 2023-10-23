@@ -39,7 +39,10 @@ def triple(x):
         tempa = ''
     return tempa.strip(), tempb.strip(), tempc.strip()
 
-def go(x, depth_restrict=16, morph='', surface='', depth=1):
+def print_tree(x, depth_restrict=16, morph='', surface='', depth=1):
+    return pt(x, depth_restrict=depth_restrict, morph=morph, surface=surface, depth=depth)
+
+def pt(x, depth_restrict=16, morph='', surface='', depth=1):
     if depth > depth_restrict:
         return
     # print('┃  ' * max(0, depth-1) + '┠──', x)
