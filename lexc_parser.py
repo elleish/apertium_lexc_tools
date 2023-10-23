@@ -43,6 +43,7 @@ def print_tree(x, depth_restrict=16, morph='', surface='', depth=1):
     return pt(x, depth_restrict=depth_restrict, morph=morph, surface=surface, depth=depth)
 
 def pt(x, depth_restrict=16, morph='', surface='', depth=1):
+    # нужно внести ограничение на части речи (нельзя выводить десятки тысяч строк)
     if depth > depth_restrict:
         return
     # print('┃  ' * max(0, depth-1) + '┠──', x)
@@ -62,5 +63,5 @@ def pt(x, depth_restrict=16, morph='', surface='', depth=1):
                     print('')
                 visited.append(node)
                 if not node in ('CLITICS-NO-COP', 'COPULA', 'CLITICS-INCL-COP', 'CLIT-EMPH'):
-                    go(node, depth_restrict=depth_restrict, morph=morph + tag, surface=surface + form,  depth=depth + 1)
+                    pt(node, depth_restrict=depth_restrict, morph=morph + tag, surface=surface + form,  depth=depth + 1)
     return
