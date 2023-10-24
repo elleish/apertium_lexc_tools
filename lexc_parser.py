@@ -1,6 +1,15 @@
 def clear(x):
-    return x.split(';')[0].split('!')[0].split('#')[0].strip()
+    return x.split(';')[0].split('!')[0].split('#')[0].strip() 
 
+# all nodes are written in uppercase 
+def it_is_node(x):
+    x = str(x)
+    if len(x) > 0:
+        return x==x.upper() and x in tree.keys()
+    else:
+        return False
+
+# load .lexc file and parse by first stage  
 def load_lexc(x):
     f = open(x, "r")
     lexc = f.read()
@@ -18,13 +27,7 @@ def load_lexc(x):
                 block.append(clear(line))
     return tree
     
-def it_is_node(x):
-    x = str(x)
-    if len(x) > 0:
-        return x==x.upper() and x in tree.keys()
-    else:
-        return False
-
+# parsing a line of a .lexc file  
 def triple(x):
     tempa, tempb, tempc = "", "", ""
     if ';' in x:
@@ -39,29 +42,28 @@ def triple(x):
         tempa = ''
     return tempa.strip(), tempb.strip(), tempc.strip()
 
+
 def print_tree(x, depth_restrict=16, morph='', surface='', depth=1):
     return pt(x, depth_restrict=depth_restrict, morph=morph, surface=surface, depth=depth)
 
+# printing .lexc recurrently  
 def pt(x, depth_restrict=16, morph='', surface='', depth=1):
-    # нужно внести ограничение на части речи (нельзя выводить десятки тысяч строк)
     if depth > depth_restrict:
         return
-    # print('┃  ' * max(0, depth-1) + '┠──', x)
     visited = []
-    if x in tree.keys():
+    if x in tree.keys() and len(tree[x]) < 256:
         for line in tree[x]:
             tag, form, node = triple(line)
             if it_is_node(node):
                 if line == tree[x][-1]:
-                    noder ='┖──'
+                    node_symbol ='┖──'
                 else:
-                    noder ='┠──'
-                print('┃  ' * max(0, depth-1) + noder, (morph + tag).replace("%",""),':', (surface + form).replace("%",""), end=' ')
-                if node != 'CLITICS-NO-COP':
-                    print(node)
-                else:
-                    print('')
+                    node_symbol ='┠──'
+                print('┃  ' * max(0, depth-1) + node_symbol, (morph + tag).replace("%",""),':', (surface + form).replace("%",""), end=' ')
                 visited.append(node)
                 if not node in ('CLITICS-NO-COP', 'COPULA', 'CLITICS-INCL-COP', 'CLIT-EMPH'):
+                    print(node)
                     pt(node, depth_restrict=depth_restrict, morph=morph + tag, surface=surface + form,  depth=depth + 1)
+                else:
+                    print('')
     return
