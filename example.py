@@ -3,9 +3,19 @@ Sakha = lp.download('Sakha')
 tree = lp.Tree(Sakha)
 
 print('------------------------------------')
-print('Nouns')
+print('Parts of speech')
 print('------------------------------------')
-print(tree.tree['Nouns'])
+print(tree.tree['Roots'])
+
+print('------------------------------------')
+print('Count the lemmas in a specific part of speech')
+print('------------------------------------')
+print(len(tree.tree['Nouns']))
+
+print('------------------------------------')
+print('List of tree nodes')
+print('------------------------------------')
+print(tree.tree.keys())
 
 print('------------------------------------')
 print('N1')
