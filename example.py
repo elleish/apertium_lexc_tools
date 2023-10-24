@@ -5,7 +5,7 @@ tree = lp.Tree(Sakha)
 print('------------------------------------')
 print('Parts of speech')
 print('------------------------------------')
-print(tree.tree['Roots'])
+print(tree.tree['Root'])
 
 print('------------------------------------')
 print('Count the lemmas in a specific part of speech')
