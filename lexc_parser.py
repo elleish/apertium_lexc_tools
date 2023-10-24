@@ -1,3 +1,6 @@
+import os
+from urllib.request import urlretrieve
+
 def clear(x):
     return x.split(';')[0].split('!')[0].split('#')[0].strip() 
 
@@ -16,15 +19,10 @@ def triple(x):
         tempa = ''
     return tempa.strip(), tempb.strip(), tempc.strip()
 
-def downloadSakha():
-    import os
-    url = 'https://www.someurl.com'
-    os.system(f"""wget -c --read-timeout=5 --tries=0 "{url}"""")
-
 class Tree:
     def __init__(self, lexcfile):     # load .lexc file and parse by first stage
         self.tree = dict()
-        f = open(lexcfile, "r")
+        f = open(lexcfile, "r", encoding="utf-8")
         self.lexc_plain = f.read()
         self.lexc_lines = self.lexc_plain.split('\n')
         header, block = '__empty', []
@@ -68,3 +66,28 @@ class Tree:
                         self.print_tree(node, depth_restrict=depth_restrict, morph=morph + tag, surface=surface + form,  depth=depth + 1)
                     else:
                         print('')
+
+
+def download(lang="Sakha"):
+    if lang.lower() in ("kazakh", "kaz", "казах", "каз"):
+        lang, url = "Kazakh", "https://raw.githubusercontent.com/apertium/apertium-kaz/master/apertium-kaz.kaz.lexc"
+    elif lang.lower() in ("tatar", "tat", "татар", "тат"):
+        lang, url = "Tatar", "https://raw.githubusercontent.com/apertium/apertium-tat/master/apertium-tat.tat.lexc"
+    elif lang.lower() in ("kyrgyz", "kyr", "kirgiz", "kir", "кыргыз", "кыр", "кир"):
+        lang, url = "Kyrgyz", "https://raw.githubusercontent.com/apertium/apertium-kir/master/apertium-kir.kir.lexc"
+    elif lang.lower() in ("tyvan", "tyv", "tuvan", "tuv",  "тыва", "тыв"):
+        lang, url = "Tuvan", "https://raw.githubusercontent.com/apertium/apertium-tyv/master/apertium-tyv.tyv.lexc"
+    else:
+        lang, url = "Sakha", "https://raw.githubusercontent.com/apertium/apertium-sah/master/apertium-sah.sah.lexc"
+
+    lexcfile = url.split('/')[-1]
+    if os.path.exists(lexcfile):
+        print("Found the .lexc file of ", lang, "language")
+    else:
+        try:
+            urlretrieve(url, lexcfile)
+            # os.system(f"wget -c --read-timeout=5 --tries=2 '{url}'")
+            print("The .lexc file of ", lang, "downloaded from", url)
+        except:
+            print("Cannot download", url)
+    return lexcfile

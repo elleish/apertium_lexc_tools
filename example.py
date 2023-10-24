@@ -1,5 +1,6 @@
 import lexc_parser as lp
-tree = lp.Tree("apertium-sah.sah.lexc")
+Sakha = lp.download('Sakha')
+tree = lp.Tree(Sakha)
 
 print('------------------------------------')
 print('Nouns')
