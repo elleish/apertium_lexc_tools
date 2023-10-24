@@ -18,18 +18,12 @@ git clone https://github.com/elleish/sakha_language_tools
 
 Once this python package is installed, you can use it to analyze .lexc files for the Apertium project.
 
-1. get the .lexc file `!wget https://raw.githubusercontent.com/apertium/apertium-sah/master/apertium-sah.sah.lexc`
-
-  - kazakh language `!wget https://raw.githubusercontent.com/apertium/apertium-kaz/master/apertium-kaz.kaz.lexc`
-  - tatar language `!wget https://raw.githubusercontent.com/apertium/apertium-tat/master/apertium-tat.tat.lexc`
-  - kyrgyz language `!wget https://raw.githubusercontent.com/apertium/apertium-kir/master/apertium-kir.kir.lexc`
-  - tuvan language `!wget https://raw.githubusercontent.com/apertium/apertium-tyv/master/apertium-tyv.tyv.lexc`
-
-2. import this python package: `import sakha_language_tools.lexc_parser`
-3. load the .lecx file into python: `tree = load_lexc("apertium-sah.sah.lexc")` 
-4. Examine the parts of speech in the language: `tree['Root']`
-5. Count the lemmas in a specific part of speech: `len(tree['Verbs'])`, `len(tree['Nouns'])`, etc.
-6. List of tree nodes `tree.keys()`  
-7. Visualize a tree from any node: `tree('N1')`
-8. Visualize a tree from any node with a specified depth: `tree('Nouns', depth_restrict=4)` 
-9. Additional examples can be found in the `examples.ipynb` file.
+1. Import this python package: `import lexc_parser as lp`
+2. Load the .lecx file `Sakha = lp.download('Sakha')`, `Kazakh = lp.download('Kazakh')`, `Kyrgyz = lp.download('Kyrgyz')` or another language 
+3. Parse the .lecx file into tree: `tree = lp.Tree(Sakha)`, `tree = lp.Tree(Kazakh)` or another language   
+4. Examine the parts of speech in the language: `tree.tree['Root']`
+5. Count the lemmas in a specific part of speech: `len(tree.tree['Verbs'])`, `len(tree.tree['Nouns'])`, etc.
+6. List of tree nodes `tree.tree.keys()`  
+7. Visualize a tree from any node: `tree.tree('N1')`
+8. Visualize a tree from any node with a specified depth: `tree.tree('Nouns', depth_restrict=4)` 
+9. Additional examples can be found in the `examples.py` or `examples.ipynb` files.
